@@ -2,9 +2,9 @@ import React, { useState, useEffect } from 'react';
 import './App.css'; // Pastikan CSS ini diimpor
 
 // URL Backend kita (tempat mengambil data produk & gambar)
-const API_URL = 'http://localhost:5000';
+const API_URL = 'https://ecom-production-a639.up.railway.app';
 // URL gambar QRIS statis (pastikan nama file-nya benar)
-const QRIS_IMAGE_URL = `${API_URL}/images/qris-saya.jpg`; 
+const QRIS_IMAGE_URL = `${API_URL}/images/qris-saya.jpg`;
 
 function App() {
   
