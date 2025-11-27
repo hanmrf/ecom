@@ -1,7 +1,6 @@
 /* =========================================
    1. GLOBAL & VARIABLES
    ========================================= */
-/* PERBAIKAN: Hapus tanda [] dan () yang membungkus URL */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap');
 
 :root {
@@ -36,19 +35,21 @@ html {
    ========================================= */
 header {
   padding: 20px 0 40px 0;
+  /* text-align: center; <-- HAPUS INI agar flexbox header bekerja */
 }
 
-/* Header Layout */
+/* Header Layout (PERBAIKAN AGAR TIDAK MENUMPUK) */
 .header-content {
   display: flex;
   justify-content: space-between;
   align-items: center;
   position: relative;
+  padding: 0 10px;
 }
 
 .header-title-group {
   flex-grow: 1; 
-  text-align: center; 
+  text-align: center; /* Judul tetap di tengah */
 }
 
 header h1 {
@@ -63,17 +64,66 @@ header p {
   color: var(--text-grey);
 }
 
-/* Cart Icon in Header */
-.header-cart {
+/* User Menu (Login & Cart Container) - PERBAIKAN */
+.user-menu {
+  display: flex;
+  align-items: center;
+  gap: 15px; /* Jarak antara Login dan Keranjang */
   position: absolute;
-  right: 10px;
-  top: 10px;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.user-info {
+  font-size: 0.9rem;
+  color: var(--text-dark);
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  text-align: right;
+}
+
+.logout-link {
+  background: none;
+  border: none;
+  color: #ff6b6b;
+  font-size: 0.8rem;
+  cursor: pointer;
+  text-decoration: underline;
+  padding: 0;
+}
+
+.login-btn-header {
+  background-color: white;
+  color: var(--primary-color);
+  border: 1px solid var(--primary-color);
+  padding: 8px 15px;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  white-space: nowrap;
+}
+
+.login-btn-header:hover {
+  background-color: var(--primary-color);
+  color: white;
+}
+
+/* Cart Icon - PERBAIKAN (Relative, bukan Absolute) */
+.header-cart {
+  position: relative;
   cursor: pointer;
   background-color: white;
   padding: 10px;
   border-radius: 50%;
   box-shadow: 0 2px 8px rgba(0,0,0,0.1);
   transition: transform 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .header-cart:hover {
@@ -101,7 +151,7 @@ header p {
   box-shadow: 0 2px 4px rgba(0,0,0,0.2);
 }
 
-/* Hero Section */
+/* Hero Section (Gaya Lama) */
 .hero {
   background: var(--primary-gradient);
   border-radius: 16px;
@@ -804,4 +854,78 @@ footer p {
 @keyframes slideIn {
   from { transform: translateX(100%); opacity: 0; }
   to { transform: translateX(0); opacity: 1; }
+}
+
+/* === PIP WIDGET (AVATAR MELAYANG) === */
+.avatar-wrapper {
+  position: fixed;
+  bottom: 3px;
+  left: 3px;
+  z-index: 2000;
+}
+
+.pip-content {
+  background: white;
+  border: 1px solid var(--border-color);
+  box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+  border-radius: 12px;
+  padding: 15px;
+  width: 150px;
+  font-family: 'Inter', sans-serif;
+}
+
+.pip-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+  color: var(--primary-color);
+}
+
+.pip-body p {
+  font-size: 0.85rem;
+  margin: 5px 0;
+  color: var(--text-dark);
+}
+
+/* === STYLE MODAL SIZE SELECTOR === */
+.modal-subtitle {
+  font-size: 1.1rem;
+  color: #4a5568;
+  margin-bottom: 20px;
+  margin-top: -10px;
+}
+
+.size-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); /* 4 Kolom */
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.size-btn {
+  background-color: var(--bg-light);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  padding: 12px;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #2d3748;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.size-btn:hover {
+  border-color: var(--primary-color);
+  color: var(--primary-color);
+  background-color: #fff;
+}
+
+/* Saat tombol ukuran dipilih */
+.size-btn.active {
+  background: var(--primary-gradient);
+  color: white;
+  border-color: transparent;
+  box-shadow: 0 4px 6px rgba(106, 17, 203, 0.3);
+  transform: scale(1.05);
 }
